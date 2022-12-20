@@ -1,0 +1,104 @@
+.row {
+    width: 50%;
+    flex-direction: column;
+    display: flex;
+    margin: 4rem 20rem;
+    align-items: center;
+    justify-content: center;
+    @media screen and (max-width: 768px) {
+        width: 100%;
+        margin: 1rem 0;
+    }
+}
+.row h1{
+    margin: 2rem 12rem;
+}
+.row div {
+        width: 100%;
+        margin: 0.75rem 0;
+        border-radius: 10px;
+        cursor: pointer;
+        /* background-color: #edf2f8; */
+    }
+.row input {
+    width: 80%;
+    padding: 1rem;
+    border: none;
+    border-radius: 7px;
+    background-color: #edf2f8;
+    font-family: "DM Sans", sans-serif;
+    color: #313bac;
+    outline: none;
+    margin: 0.5rem;
+}
+.row input .date {
+    width: 10%
+}
+label{
+    padding: 1rem;
+    font-family: "DM Sans", sans-serif;
+    color: red;
+}
+.row .btn-add {
+    padding: 1rem 3rem;
+    border-radius: 10px;
+    border: none;
+    background-color: #313bac;
+    font-weight: 500;
+    color: #ffffff;
+    outline: none;
+    margin: 2rem 15rem;
+    font-family: "DM Sans", sans-serif;
+    cursor: pointer;
+}
+.add{
+    color: #ffff;
+    cursor: pointer;
+}
+.row .btn {
+    width: 5px;
+    height: 5px;
+    padding: 1rem 3rem;
+    border-radius: 10px;
+    border: none;
+    background-color: #313bac;
+    font-weight: 500;
+    color: #ffffff;
+    outline: none;
+    font-family: "DM Sans", sans-serif;
+    cursor: pointer;
+}
+.app-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 1rem;
+}
+.app-container h1 {
+    margin: 3rem 30rem;
+    align-items: center;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    border: 1px solid #ffff;
+    text-align: left;
+    padding: 8px;
+    font-size: 32px;
+}
+th {
+    background-color: rgb(117, 201, 250);
+}
+td {
+    background-color: rgb(205, 235, 253);
+}
+form td:last-child{
+    display: flex;
+    justify-content: space-evenly;
+}
+form * {
+    font-size: 28px;
+}
+
