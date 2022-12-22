@@ -15,10 +15,7 @@ import { motion } from 'framer-motion';
 import { Carousel } from 'antd';
 
 function Home() {
-  // const [newTitle, setNewTitle] = useState("");
-  // const [newGenre, setNewGenre] = useState("");
-  // const [newDate, setNewDate] = useState("");
-  // const [newRating, setNewRating] = useState("");
+ 
   const [movies, setMovies] = useState([]);
   const moviesCollectionRef = collection(db, "movies");
   const [maxindex, setMaxindex] = useState(0);
@@ -38,7 +35,7 @@ function Home() {
 
   const getMovies = async () => {
     const data = await getDocs(moviesCollectionRef);
-    // setMovies(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    
     data.docs.map((doc) => {
       if (doc.data().genre === "Comedy") {
         avgComedy.push(doc.data().rating);
@@ -108,28 +105,7 @@ function Home() {
     display: "flex", 
     flexDirection: "column"
   };
-  // const contentStyle = {
-  //   height: '160px',
-  //   color: '#fff',
-  //   lineHeight: '160px',
-  //   textAlign: 'center',
-  //   background: '#364d79',
-  // };
-  // const App = () => (
-  //   <Carousel autoplay>
-  //     <div>
-  //       <h3 style={contentStyle}>1</h3>
-  //     </div>
-  //     <div>
-  //       <h3 style={contentStyle}>2</h3>
-  //     </div>
-  //     <div>
-  //       <h3 style={contentStyle}>3</h3>
-  //     </div>
-  //     <div>
-  //       <h3 style={contentStyle}>4</h3>
-  //     </div>
-  //   </Carousel>
+
   // );
   // const getAvg = async () => {
   //     movies.map((movie, index) => {
@@ -175,40 +151,7 @@ function Home() {
 
   return (
     <div className="dashboard">
-      {/* Favourite Genre*/} 
-      {/* <div className="favourite">
-        <div className="getfavourite" style={{ display: "flex" }}>
-          <h2>Favourite Genre</h2>
-          <p>{favgenre}</p>
-        </div>
-      </div> */}
-      
-      {/* <div className="favgenre" style={{ color: "wheat", display: "flex", flexDirection: "row"}}>
-       
-          <div style={{ marginLeft: 20 }}>
-            <h2>Favourite Genre</h2>
-            <p>{favgenre}</p>
-          </div>
-        
-      </div> */}
-      {/* Average movies watched per month */}
-      {/* <div className="average" style={{ color: "wheat", display: "flex", flexDirection: "column"}}>
-       
-          <h2>Average Movies Watched Per Month</h2>
-        
-      </div> */}
-      {/* Current Mood */}
-      {/* <div className="mood" style={{ color: "wheat", display: "flex", flexDirection: "column"}}>
-        
-          {currentrating >= 4 ? (
-            <div className="emojis"><span>I am feeling</span> 😊 <span>!</span></div>
-          ) : currentrating >= 2 && currentrating <= 3 ? (
-            <div className="emojis"><span>I am feeling</span> 😐 <span>!</span></div>
-          ) : (
-            <div className="emojis"><span>I am feeling</span> 😔 <span>!</span></div>
-          )}
-      </div>
-      <div> */}
+     
         <Carousel autoplay>
           <div>
             <div className="welcome" style={contentStyle}>

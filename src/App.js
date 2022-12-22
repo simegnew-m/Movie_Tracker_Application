@@ -99,14 +99,14 @@ function App() {
     <main className='container'>
       <Router>
         <Navbar />
-        {/* <Header /> */}
+        
         <div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/movie-list" element={<MovieList />} />
           <Route path="/add-movie" element={<AddMovie />} />
           <Route path="/edit-movie/:id" element={<EditMovie />} />
-          {/* <Route path="/delete-movie" element={<DeleteMovie />} /> */}
+          
         </Routes>
         </div>
       </Router>

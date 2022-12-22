@@ -119,18 +119,7 @@ function AddMovie() {
               <option value="Adventure">Adventure</option>
               <option value="Horror">Horror</option>
             </select>
-            {/* <input
-              // className="inputs"
-              style={INPUT}
-              type="text"
-              list="genres"
-              placeholder="Genre"
-              required
-              onChange={(event) => {
-                setNewGenre(event.target.value);
-              }}
-            /> */}
-            {/* <datalist id="genres"></datalist> */}
+            
           </div>
           {error && newGenre.length <= 0 ? (
             <label>Genre can't be Empty</label>
@@ -181,7 +170,7 @@ function AddMovie() {
               <option value="5">5</option>
             </select>
 
-            {/* <datalist id="number"></datalist> */}
+            
           </div>
           {error && newRating.length <= 0 ? (
             <label>Rating can't be Empty</label>
