@@ -90,7 +90,17 @@ nav #icon{
     }
 }
 section {
-    background: url(./asset/bgIMG.png) no-repeat;
-    background-size: cover;
-    height: calc(100vh - 80px);
+    width: 100%;
+    height: calc(180vh - 20px);
+    background: url(./asset/moviebg.png) repeat;
+    background-size: calc(180vh - 20px);
+}
+img{
+    width: 150px;
+    height: 70px;
+    margin-top: 5px;
+    @media screen and (min-width: 2000px) {
+        width: 180px;
+        height: 40px;
+    }
 }

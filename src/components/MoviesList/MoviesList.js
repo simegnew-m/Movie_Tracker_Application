@@ -108,11 +108,11 @@ function MoviesList() {
 
   console.log("first", movies);
   return (
-    <div style={{ width: "90%", marginLeft: "5%", marginTop: "5%" }}>
+    <div style={{ width: "90%", marginLeft: "5%", marginTop: "0%" }}>
       <div>
-        <h1 style={{ marginLeft: "40%", marginBottom: "20px" }}>Movie List</h1>
+        <h1 style={{ color: "wheat" ,marginLeft: "40%", marginBottom: "10px" }}>Movies List</h1>
       </div>
-      <Table style={{}} dataSource={movies} columns={columns} />
+      <Table style={{color: "wheat", paddingTop: "0rem", margin: "0rem 0rem"}} dataSource={movies} columns={columns} />
     </div>
   )
 }

@@ -66,7 +66,7 @@ function EditMovie() {
 
 
   return (
-    <div className="row" style={{ marginLeft: "25%" }}>
+    <div className="rowedit" style={{ marginLeft: "25%" }}>
       <h1>Edit Movie</h1>
       {movies ? (
         <div style={{ width: "80%" }}>
@@ -174,7 +174,7 @@ function EditMovie() {
             </div>
           </form>
           <button
-            className="btn-add"
+            className="btn-edit"
             style={{ fontSize: "20px" }}
             onClick={() => {
               updateMovies();

@@ -1,4 +1,4 @@
-.row {
+.rowadd {
     width: 50%;
     flex-direction: column;
     display: flex;
@@ -10,35 +10,36 @@
         margin: 1rem 0;
     }
 }
-.row h1{
-    margin: 10rem 12rem;
+.rowadd h1{
+    margin: 1rem 12rem;
+    color: wheat;
 }
-.row div {
+.rowadd div {
         width: 100%;
-        margin: 0.75rem 0;
+        margin: 0.5rem 0;
         border-radius: 10px;
         cursor: pointer;
-        background-color: #edf2f8;
+        background-color: none;
     }
-.row .inputs {
+.rowadd input {
     width: 80%;
-    padding: 0.75rem;
+    padding: 1rem;
     border: none;
     border-radius: 7px;
-    background-color: #696868;
+    background-color: #ffffff;
     font-family: "DM Sans", sans-serif;
-    color: #ffffff;
+    color: #080808;
     outline: none;
     margin: 0.5rem;
 }
-.row .date {
+.rowadd .date {
     width: 40%;
     padding: 1rem;
     border: none;
     border-radius: 7px;
-    background-color: #696868;
+    background-color: #ffffff;
     font-family: "DM Sans", sans-serif;
-    color: #ffffff;
+    color: #635959;
     outline: none;
     margin: 0.5rem;
 }
@@ -47,19 +48,19 @@ label{
     font-family: "DM Sans", sans-serif;
     color: red;
 }
-.row .btn-add {
-    padding: 1rem 3rem;
+.rowadd .btn-add {
+    padding: 1rem 2rem;
     border-radius: 10px;
     border: none;
     background-color: #313bac;
-    font-weight: 500;
+    font-weight: 300;
     color: #ffffff;
     outline: none;
-    margin: 2rem 15rem;
+    margin: 1rem 13rem;
     font-family: "DM Sans", sans-serif;
     cursor: pointer;
 }
-.row .btn-add .link{
+.rowadd .btn-add .link{
     border-radius: 10px;
     border: none;
     background-color: #313bac;
@@ -73,7 +74,7 @@ label{
     color: #ffff;
     cursor: pointer;
 }
-.row .btn {
+.rowadd .btn {
     width: 5px;
     height: 5px;
     padding: 1rem 3rem;

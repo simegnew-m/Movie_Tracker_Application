@@ -12,7 +12,7 @@ import { async } from "@firebase/util";
 import "./AddMovie.css";
 import { Navigate } from "react-router-dom";
 import { Link, NavLink } from "react-router-dom";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import {
   BrowserRouter as Router,
   Route,
@@ -29,8 +29,7 @@ function AddMovie() {
   const [movies, setMovies] = useState([]);
   const moviesCollectionRef = collection(db, "movies");
   const [error, setError] = useState(false);
-  const [refresh, setRefresh] = useState([]);
-
+  const [refresh, setRefresh] = useState([false]);
   const addMovies = async () => {
     await addDoc(moviesCollectionRef, {
       title: newTitle,
@@ -38,9 +37,11 @@ function AddMovie() {
       date: newDate,
       rating: newRating,
     });
+
     <Link className="nav-link" to="/movie-list">
       Add Movie
     </Link>;
+    // setRefresh(true);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,35 +52,19 @@ function AddMovie() {
       newRating.length == 0
     ) {
       setError(true);
-    }
+    };
     if (newTitle && newGenre && newDate && newRating) {
       addMovies();
-      setRefresh(!refresh);
     }
   };
 
-  // function handleSubmit(e) {
-  //     e.preventDafault()
-  //     if(title === ''){
-  //         return
-  //     }
-  //     const moviesCollectionRef = collection(db, "movies");
-  //     addDoc(moviesCollectionRef, {title: newTitle, genre: newGenre, date: newDate, rating: newRating})
-  //         .then(response => {
-  //             console.log(response)
-  //         })
-  //         .catch(error => {
-  //             console.log(error.message)
-  //         });
-  // }
   useEffect(() => {
     const getMovies = async () => {
       const data = await getDocs(moviesCollectionRef);
-      // console.log(data);
       setMovies(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getMovies();
-  }, []);
+  }, [refresh]);
   const INPUT = {
     border: "1px solid #00000040",
     display: "flex",
@@ -88,7 +73,7 @@ function AddMovie() {
   };
 
   return (
-    <div className="row" style={{ marginLeft: "25%" }}>
+    <div className="rowadd" style={{ marginLeft: "25%" }}>
       <h1>Add Movies</h1>
       <form onSubmit={handleSubmit}>
         <div className="app_flex text-center">
@@ -154,7 +139,7 @@ function AddMovie() {
           )}
           <div>
             <input
-              //   className="date"
+              className="date"
               style={INPUT}
               type="date"
               placeholder="Watch Date"
@@ -170,7 +155,6 @@ function AddMovie() {
             ""
           )}
           <div>
-
             <select
               placeholder="Rating"
               style={{
@@ -211,6 +195,7 @@ function AddMovie() {
           >
             Add Movie
           </button>
+          
         </div>
       </form>
     </div>
