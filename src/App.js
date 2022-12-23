@@ -4,7 +4,6 @@ import { db } from './firebase-config';
 import {collection, getDocs, addDoc, updateDoc, deleteDoc, doc} from "firebase/firestore";
 import { async } from '@firebase/util';
 import { BrowserRouter as Router, Route, Routes, withRouter} from "react-router-dom";
-import Header from './Header';
 import Home from './components/Home';
 import MovieList from './components/MoviesList/MoviesList';
 import AddMovie from './components/AddMovie/AddMovie';
