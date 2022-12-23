@@ -197,3 +197,15 @@ function AddMovie() {
   );
 }
 export default AddMovie;
+
+// function getAvg(data) {
+  //   var rating = data.val();
+  //   var keys = Object.keys(rating);
+  //   console.log(keys);
+  //   for (var i=0; i< keys.length; i++){
+  //     var k = keys[i];
+  //     var initials = rating[k].initials;
+  //     var genre = rating[k].initials;
+  //     console.log(initials, genre);
+  //   }
+  // };

@@ -9,6 +9,7 @@ import {
   doc,
 } from "firebase/firestore";
 import { async } from "@firebase/util";
+import "./MoviesList.css";
 import EditMovie from "../EditMovie/EditMovie";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import {

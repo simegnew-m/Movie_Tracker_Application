@@ -11,11 +11,10 @@ import {
 import "./Home.css";
 import { async } from "@firebase/util";
 import { Button, Spin } from "antd";
-import { motion } from 'framer-motion';
-import { Carousel } from 'antd';
+import { motion } from "framer-motion";
+import { Carousel } from "antd";
 
 function Home() {
- 
   const [movies, setMovies] = useState([]);
   const moviesCollectionRef = collection(db, "movies");
   const [maxindex, setMaxindex] = useState(0);
@@ -24,21 +23,20 @@ function Home() {
   const [avgComedy, setAvgComedy] = useState([]);
   const [avgAction, setAvgAction] = useState([]);
   const [avgAdventure, setAvgAdventure] = useState([]);
+  const [avgMonth, setAvgMonth] = useState([]);
 
-  const [favgenre, setFavgenre] = useState("");
+  const [favgenre, setFavgenre] = useState(null);
 
   const [maxval, setMaxval] = useState(0);
   const [finish, setFinish] = useState(false);
-  const [currentrating, setCurrentrating] = useState(null);
+  const [currentrating, setCurrentrating] = useState("");
   const [currentval, setCurrentval] = useState("");
   const [currentIndex, setCurrentindex] = useState("");
-
-  // const m1 = db.collection('movies').where('rating', '>', 4);
 
   const getMovies = async () => {
     const data = await getDocs(moviesCollectionRef);
 
-    data.docs.map((doc) => {
+    data.docs.map((doc, index) => {
       if (doc.data().genre === "Comedy") {
         avgComedy.push(doc.data().rating);
       } else if (doc.data().genre === "Horror") {
@@ -46,24 +44,35 @@ function Home() {
         avgHorror.push(doc.data().rating);
       } else if (doc.data().genre === "Action") {
         avgAction.push(doc.data().rating);
-      } else if (doc.data().genre === "Adventure"){
+      } else if (doc.data().genre === "Adventure") {
         avgAdventure.push(doc.data().rating);
       } else {
-        console.log("")
+        console.log("");
       }
+      console.log("rating", doc.data().date);
+      setCurrentval(doc.data().date);
 
-      if (currentval <= doc.data().date) {
+      const x = new Date(currentval);
+      const y = new Date(doc.data().date);
+
+      console.log("asdfgh",x, y, currentval)
+
+      if (index === 0) {
+        setCurrentval(doc.data().date);
+
+      } else if (currentval <= doc.data().date) {
         setCurrentval(doc.data().date);
         setCurrentrating(doc.data().rating);
+      } else {
+        console.log("error");
       }
-
     });
 
-    let average = avgComedy.reduce((a, b) => a + b, 0) / avgComedy.length;
-    let average1 = avgHorror.reduce((a, b) => a + b, 0) / avgHorror.length;
-    let average2 = avgAction.reduce((a, b) => a + b, 0) / avgAction.length;
+    let average = Math.floor(avgComedy.reduce((a, b) => a + b, 0) / avgComedy.length);
+    let average1 = Math.floor(avgHorror.reduce((a, b) => a + b, 0) / avgHorror.length);
+    let average2 = Math.floor(avgAction.reduce((a, b) => a + b, 0) / avgAction.length);
     let average3 =
-      avgAdventure.reduce((a, b) => a + b, 0) / avgAdventure.length;
+    Math.floor(avgAdventure.reduce((a, b) => a + b, 0) / avgAdventure.length);
 
     const choosen = Math.max(average, average1, average2, average3);
     console.log(
@@ -82,33 +91,52 @@ function Home() {
       setFavgenre("Horror");
     } else if (choosen == average2) {
       setFavgenre("Action");
-    } else if (choosen == average3){
+    } else if (choosen == average3) {
       setFavgenre("Adventure");
     } else {
-      setFavgenre("No Favorite Genre")
+      setFavgenre("No Favorite Genre");
     }
-    console.log("first", favgenre);
 
     setAvgHorror([]);
     setAvgComedy([]);
     setAvgAction([]);
     setAvgAdventure([]);
 
+    // console.log("rating", currentrating);
+    
+    // movies.map((movie, index) => {
+    //   if (movie.date.getMonth() === currentval) {
+    //     avgMonth.push(movie.date);
+    //   } else {
+    //     console.log("");
+    //   }
+    // });
+
+    // // let date1 = new Date(currentval);
+    // // const month = date1.getMonth() + 1;
+    // // // if(month === "11"){
+      
+    //   console.log("month: ", avgMonth);
+    // // // }
+    // const avgMon = Math.floor(avgMonth.reduce((a,b) => a + b, 0) / avgMonth.length);
+    
+    // console.log("month: ", avgMon);
+    
     setFinish(true);
   };
 
   const contentStyle = {
-    height: '500px',
-    color: '#fff',
-    lineHeight: '160px',
-    textAlign: 'center',
+    height: "500px",
+    color: "#fff",
+    lineHeight: "160px",
+    textAlign: "center",
     // background: '#364d79',
-    color: "wheat", 
-    display: "flex", 
-    flexDirection: "column"
+    color: "wheat",
+    display: "flex",
+    flexDirection: "column",
   };
 
-  // );
+
   // const getAvg = async () => {
   //     movies.map((movie, index) => {
   //       // console.log("11aaaaa",new Date (movie.date))
@@ -117,8 +145,9 @@ function Home() {
   //         new Date(movie.date).getFullYear(),
   //         new Date(movie.date).getMonth()
   //       );
+       
 
-  //   if (currentval <= movie.date) {
+  //   if (currentIndex <= movie.date) {
   //     setCurrentval(movie.date);
   //     setCurrentindex(index);
   //     // console.log("date", movie.date > "2022-12-06")
@@ -129,12 +158,11 @@ function Home() {
   //   });
   // };
   useEffect(() => {
-
-  getMovies();
-  // getAvg();
+    getMovies();
+    // getAvg();
   }, []);
 
-  if (!finish) {
+  if (!favgenre) {
     return (
       <div
         style={{
@@ -151,42 +179,42 @@ function Home() {
     );
   }
 
+  console.log("first", favgenre, currentrating, currentval);
+
   return (
     <div className="dashboard">
-     
-        <Carousel autoplay>
-          <div>
-            <div className="welcome" style={contentStyle}>
-              <h1>Welcome to My Movies</h1>
-            </div>
+      <Carousel autoplay>
+        <div>
+          <div className="welcome" style={contentStyle}>
+            <h1>Welcome to My Movies</h1>
           </div>
-          <div>
-              <div className="favgenre" style={contentStyle}>
-                  <h2>Favourite Genre</h2>
-                  <p>{favgenre}</p> 
-              </div>
+        </div>
+        <div>
+          <div className="favgenre" style={contentStyle}>
+            <h2>Favourite Genre</h2>
+            <p>{favgenre}</p>
           </div>
-          <div>
-            <div className="average" style={contentStyle}>
-                <h2>Average Movies Watched Per Month</h2>
-                <p>{currentIndex}</p>
-            </div>
+        </div>
+        <div>
+          <div className="mood" style={contentStyle}>
+            <h2>Current Mood</h2>
+            {currentrating >= 4 ? (
+              <div className="emojis"> 😊 </div>
+            ) : currentrating >= 2 && currentrating <= 3 ? (
+              <div className="emojis"> 😐 </div>
+            ) : (
+              <div className="emojis"> 😔 </div>
+            )}
           </div>
-          <div>
-            <div className="mood" style={contentStyle}>
-                <h2>Current Mood</h2>
-                {currentrating >= 4 ? (
-                  <div className="emojis"> 😊 </div>
-                ) : currentrating >= 2 && currentrating <= 3 ? (
-                  <div className="emojis"> 😐 </div>
-                ) : (
-                  <div className="emojis"> 😔 </div>
-                )}
-            </div>
+        </div>
+        <div>
+          <div className="average" style={contentStyle}>
+            <h2>Average No. Movies Watched Per Month</h2>
+            <p>{currentIndex}</p>
           </div>
-        </Carousel>
-      </div>
-  
+        </div>  
+      </Carousel>
+    </div>
   );
 }
 
