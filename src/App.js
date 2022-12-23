@@ -19,13 +19,13 @@ function App() {
         <Navbar />
         
         <div>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/movie-list" element={<MovieList />} />
-          <Route path="/add-movie" element={<AddMovie />} />
-          <Route path="/edit-movie/:id" element={<EditMovie />} />
-          
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/movie-list" element={<MovieList />} />
+            <Route path="/add-movie" element={<AddMovie />} />
+            <Route path="/edit-movie/:id" element={<EditMovie />} />
+            
+          </Routes>
         </div>
       </Router>
        
