@@ -36,7 +36,13 @@ function AddMovie() {
       genre: newGenre,
       date: newDate,
       rating: newRating,
-    });
+    })
+      .then((doc) => {
+        window.location.reload(false);
+      })
+      .catch((err) => {
+        console.log("Something wrong");
+      });
 
     <Link className="nav-link" to="/movie-list">
       Add Movie
