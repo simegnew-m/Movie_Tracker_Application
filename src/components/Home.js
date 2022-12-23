@@ -37,7 +37,7 @@ function Home() {
 
   const getMovies = async () => {
     const data = await getDocs(moviesCollectionRef);
-    
+
     data.docs.map((doc) => {
       if (doc.data().genre === "Comedy") {
         avgComedy.push(doc.data().rating);
@@ -53,9 +53,8 @@ function Home() {
       }
 
       if (currentval <= doc.data().date) {
-        
-        setCurrentrating(doc.data().rating);
         setCurrentval(doc.data().date);
+        setCurrentrating(doc.data().rating);
       }
 
     });
