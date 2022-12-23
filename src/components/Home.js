@@ -33,6 +33,8 @@ function Home() {
   const [currentval, setCurrentval] = useState("");
   const [currentIndex, setCurrentindex] = useState("");
 
+  // const m1 = db.collection('movies').where('rating', '>', 4);
+
   const getMovies = async () => {
     const data = await getDocs(moviesCollectionRef);
     
@@ -51,8 +53,9 @@ function Home() {
       }
 
       if (currentval <= doc.data().date) {
-        setCurrentval(doc.data().date);
+        
         setCurrentrating(doc.data().rating);
+        setCurrentval(doc.data().date);
       }
 
     });
@@ -182,7 +185,6 @@ function Home() {
                 )}
             </div>
           </div>
-          
         </Carousel>
       </div>
   
