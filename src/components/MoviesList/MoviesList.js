@@ -41,7 +41,7 @@ function MoviesList() {
 
   useEffect(() => {
     const getMovies = async () => {
-      const data = await getDocs(moviesCollectionRef, where("id") , orderBy("date", "asc"));
+      const data = await getDocs(moviesCollectionRef);
       setMovies(
         data.docs.map((doc, index) => ({
           ...doc.data(),
