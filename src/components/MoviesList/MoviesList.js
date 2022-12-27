@@ -7,10 +7,12 @@ import {
   updateDoc,
   deleteDoc,
   doc,
+  Query,
 } from "firebase/firestore";
 import { async } from "@firebase/util";
 import "./MoviesList.css";
 import EditMovie from "../EditMovie/EditMovie";
+import { query, orderBy, limit, where } from "firebase/firestore";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import {
   BrowserRouter as Router,
@@ -26,7 +28,7 @@ function MoviesList() {
   const [refresh, setRefresh] = useState([]);
   const moviesCollectionRef = collection(db, "movies");
   const navigate = useNavigate();
-
+  
   const handleDelete = async (docID) => {
     try {
       await deleteDoc(doc(db, "movies", docID));
@@ -39,8 +41,7 @@ function MoviesList() {
 
   useEffect(() => {
     const getMovies = async () => {
-      const data = await getDocs(moviesCollectionRef);
-      // console.log(data);
+      const data = await getDocs(moviesCollectionRef, where("id") , orderBy("date", "asc"));
       setMovies(
         data.docs.map((doc, index) => ({
           ...doc.data(),
@@ -113,7 +114,7 @@ function MoviesList() {
       <div>
         <h1 style={{ color: "wheat" ,marginLeft: "40%", marginBottom: "10px" }}>Movies List</h1>
       </div>
-      <Table style={{color: "wheat", paddingTop: "0rem", margin: "0rem 0rem"}} dataSource={movies} columns={columns} />
+      <Table style={{color: "wheat", paddingTop: "0rem", margin: "0rem 0rem"}} dataSource={movies} columns={columns} dataIndex={"date"}/>
     </div>
   )
 }

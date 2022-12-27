@@ -7,6 +7,8 @@ import {
   updateDoc,
   deleteDoc,
   doc,
+  Timestamp,
+  where,
 } from "firebase/firestore";
 import { async } from "@firebase/util";
 import "./AddMovie.css";
@@ -20,6 +22,7 @@ import {
   withRouter,
 } from "react-router-dom";
 import MoviesList from "../MoviesList/MoviesList";
+import { query, orderBy, limit, sort } from "firebase/firestore";
 
 function AddMovie() {
   const [newTitle, setNewTitle] = useState("");
@@ -30,6 +33,7 @@ function AddMovie() {
   const moviesCollectionRef = collection(db, "movies");
   const [error, setError] = useState(false);
   const [refresh, setRefresh] = useState([false]);
+
   const addMovies = async () => {
     await addDoc(moviesCollectionRef, {
       title: newTitle,
@@ -44,10 +48,7 @@ function AddMovie() {
         console.log("Something wrong");
       });
 
-    <Link className="nav-link" to="/movie-list">
-      Add Movie
-    </Link>;
-    // setRefresh(true);
+   
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -64,13 +65,7 @@ function AddMovie() {
     }
   };
 
-  useEffect(() => {
-    const getMovies = async () => {
-      const data = await getDocs(moviesCollectionRef);
-      setMovies(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-    getMovies();
-  }, [refresh]);
+ 
   const INPUT = {
     border: "1px solid #00000040",
     display: "flex",
@@ -198,14 +193,3 @@ function AddMovie() {
 }
 export default AddMovie;
 
-// function getAvg(data) {
-  //   var rating = data.val();
-  //   var keys = Object.keys(rating);
-  //   console.log(keys);
-  //   for (var i=0; i< keys.length; i++){
-  //     var k = keys[i];
-  //     var initials = rating[k].initials;
-  //     var genre = rating[k].initials;
-  //     console.log(initials, genre);
-  //   }
-  // };

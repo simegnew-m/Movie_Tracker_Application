@@ -43,14 +43,13 @@ function EditMovie() {
   };
   const getMovies = async () => {
     const data = await getDoc(doc(db, "movies", params.id));
-    // console.log( params.id, data._document.data.value.mapValue.fields);
+  
     setMovies(data._document.data.value.mapValue.fields);
     setNewTitle(data._document.data.value.mapValue.fields.title.stringValue);
     setNewGenre(data._document.data.value.mapValue.fields.genre.stringValue);
     setNewDate(data._document.data.value.mapValue.fields.date.stringValue);
     setNewRating(data._document.data.value.mapValue.fields.rating.stringValue);
 
-    // console.log("first", movies);
   };
 
   useEffect(() => {
